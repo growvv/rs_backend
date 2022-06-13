@@ -29,7 +29,7 @@ func Register(c *gin.Context) {
 	// token := username + password
 	uid, ok := service.Register(username, password)
 	if !ok {
-		log.println("Register fail, username already exist")
+		log.Println("Register fail, username already exist")
 		c.JSON(http.StatusOK, response.UserLoginResponse{
 			Response: response.Response{StatusCode: 1, StatusMsg: "Register fail"},
 		})
@@ -38,7 +38,7 @@ func Register(c *gin.Context) {
 
 	token, err := service.GenerateToken(uid)
 	if err != nil {
-		log.println("Generate token fail")
+		log.Println("Generate token fail")
 		c.JSON(http.StatusOK, response.UserLoginResponse{
 			Response: response.Response{StatusCode: 1, StatusMsg: "Generate token fail"},
 		})
@@ -83,7 +83,7 @@ func Login(c *gin.Context) {
 	// token := username + password
 	token, err := service.GenerateToken(user.Id)
 	if err != nil {
-		log.println("Generate token fail", err)
+		log.Println("Generate token fail", err)
 		c.JSON(http.StatusOK, response.UserLoginResponse{
 			Response: response.Response{StatusCode: 1, StatusMsg: "Generate token fail"},
 		})

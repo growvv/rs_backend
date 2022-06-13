@@ -33,3 +33,13 @@ func GetUser(username, password string) (model.UserDB, bool) {
 		return user, true
 	}
 }
+
+func GetUserById(id uint64) (model.UserDB, bool) {
+	var user model.UserDB
+	config.Db.Where("id = ?", id).First(&user) // 查询用户
+	if user.Id == 0 {
+		return model.UserDB{}, false
+	} else {
+		return user, true
+	}
+}

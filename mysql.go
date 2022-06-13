@@ -21,7 +21,7 @@ func initMysql() {
 	}
 
 	// Todo 加其他model
-	if err := db.AutoMigrate(&model.UserDB{}); err != nil {
+	if err := db.AutoMigrate(&model.UserDB{}, &model.PictureDB{}); err != nil {
 		panic(fmt.Errorf("db automigrate err: %s\n", err))
 	}
 
